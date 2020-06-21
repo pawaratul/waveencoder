@@ -1,4 +1,4 @@
-#if defined(__linux__) ||  defined(__cygwin__)
+#if defined(__linux__) ||  defined(__CYGWIN__)
 #include <sys/types.h>
 #include <dirent.h>
 #include <cstring>
@@ -39,7 +39,7 @@ int main(int argc, char **argv)
         LOG("Encoding WAV files to MP3 Files");
         std::string dirPath(argv[1]);
         std::string fileName;
-#if defined(__linux__) || defined(__cygwin__)        
+#if defined(__linux__) || defined(__CYGWIN__)        
         DIR *dirp = opendir(dirPath.c_str());
 
         if(dirp != nullptr)

@@ -28,32 +28,37 @@ Requirements:
 ## Linux
 
 ### One time setting
-    - MP3 encoding library - lame library - 3.100. Install lame with thecommand *sudo apt install libmp3lame-dev*
-    - Compiler - GNU C++ compiler 7.5.0. Install GNU compiler with below command *sudo apt install g++*
-    - git - 2.17.1. Install git with command *sudo apt install git*
+    - Install MP3 encoding library with the command : sudo apt install libmp3lame-dev
+
+    - Install GNU C++ compiler : sudo apt install g++
 
 
 ### Build
     - Open terminal, clone the repository "waveencoder" and go to the directory "waveencoder"
-    - Build the souce code with
-     *g++ sources/*.cpp  -I includes -lpthread /usr/lib/x86_64-linux-gnu/libmp3lame.a -o waveencoder*
-    - Build with macro INFO OR DEBUG to enable logs
-      *g++ sources/*.cpp  -I includes -lpthread /usr/lib/x86_64-linux-gnu/libmp3lame.a -o waveencoder -D INFO -D DEBUG*
-    - Run the binary with 
-   	  *./wavencoder <directory path of wave files>*
 
+    - Build the souce code with :
+      g++ sources/*.cpp  -I includes -lpthread /usr/lib/x86_64-linux-gnu/libmp3lame.a -o waveencoder -Wall
+
+    - Build with macro to enable logs
+      g++ sources/*.cpp  -I includes -lpthread /usr/lib/x86_64-linux-gnu/libmp3lame.a -o waveencoder -D INFO -D DEBUG -D RUNTIME
+
+    - Run the binary with 
+   	  ./wavencoder <directory path of wave files>
 
 ## Windows 
 
 ### One time setting
-    - Install cygwin and Install below packages 
-    - 
+    - Install cygwin in windows  
+    - Install packages packages > GNU C++ Compiler, Lame library  
 
 ### Build
     - Open cygwin terminal, clone the repository "waveencoder" and go to directory "waveencoder"
+
     - Build the souce code with
-     *g++ sources/*.cpp  -I includes -lpthread /usr/lib/x86_64-linux-gnu/libmp3lame.a -o waveencoder*
+     *g++ sources/*.cpp  -I includes -lpthread /usr/lib/x86_64-linux-gnu/libmp3lame.a -o waveencoder -Wall -O2*
+
     - Build with macro INFO OR DEBUG to enable logs
       *g++ sources/*.cpp  -I includes -lpthread /usr/lib/x86_64-linux-gnu/libmp3lame.a -o waveencoder -D INFO -D DEBUG*
+
     - Run the binary with commandline
-   	  *./wavencoder <directory path of wave files>*
+   	  ./wavencoder <directory path of wave files>
