@@ -41,9 +41,9 @@ void audioEncoder::encodeWavToMp3()
 
     lame_global_flags *gfp = lame_init();    
     lame_set_quality(gfp, 5);
-    int ret_code = lame_init_params(gfp);
+    lame_init_params(gfp);
 
-    const uint data_size = 8192;
+    const uint data_size = 65536;
     size_t noofreadbytes, noofwritebytes;
 
     short int readbuffer[2*data_size];
@@ -56,7 +56,6 @@ void audioEncoder::encodeWavToMp3()
         try
         {
             noofreadbytes = fread(&wave, 4, 40, wavefile);
-
             do
             {
                 noofreadbytes = fread(readbuffer, 2*sizeof(short int), data_size, wavefile);
