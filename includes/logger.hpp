@@ -36,7 +36,9 @@ public:
     {
 #if DEBUG        
         mtx.lock();
-        std::cout << "0x" << std::hex << std::this_thread::get_id() << " : " << str << v << std::endl;
+        std::cout << __TIME__ << " : " << str << int64_t(v) << std::endl;
+
+        // std::cout << "0x" << std::hex << std::this_thread::get_id() << " : " << str << v << std::endl;
         mtx.unlock();
 #endif        
     }

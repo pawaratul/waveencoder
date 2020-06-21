@@ -7,6 +7,20 @@
 #include "audiocommand.hpp"
 #include "logger.hpp"
 #include "workerthread.hpp"
+
+#if RUNTIME
+class runtimer
+{
+    public:
+    std::chrono::high_resolution_clock::time_point start;
+    runtimer() : start(std::chrono::high_resolution_clock::now()){}
+    ~runtimer()
+    {
+        std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();
+        LOGI("Total execution time :", std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count());
+    }
+};
+#endif
 /*
     main function accepts a directory contaning waves audiofiles.
     It creates an audiocommand with each wave file and gives to 
@@ -19,6 +33,9 @@ int main(int argc, char **argv)
         
     if(argc == 2)
     {
+#if RUNTIME        
+        runtimer t1;
+#endif
         LOG("Encoding WAV files to MP3 Files");
         std::string dirPath(argv[1]);
         std::string fileName;

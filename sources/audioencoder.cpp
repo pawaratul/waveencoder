@@ -40,7 +40,6 @@ void audioEncoder::encodeWavToMp3()
     LOG(mp3filename);
 
     lame_global_flags *gfp = lame_init();    
-    lame_set_VBR(gfp, vbr_default);
     lame_set_quality(gfp, 5);
     int ret_code = lame_init_params(gfp);
 
