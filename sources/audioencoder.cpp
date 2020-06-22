@@ -27,7 +27,8 @@ struct  waveFormat{
 */
 void audioEncoder::encodeWavToMp3()
 {
-    LOG("-->audioEncoder::encodeWavToMp3");
+    std::string str("Encoding Wave File  : " + m_Wavefilename);
+    LOG(str);
     waveFormat wave{0};
     std::string mp3filename(m_Wavefilename);
     auto pos = mp3filename.find(".wav");
@@ -35,9 +36,6 @@ void audioEncoder::encodeWavToMp3()
     {
         mp3filename.replace(pos, mp3filename.size(), ".mp3");
     }
-
-    LOG(m_Wavefilename);
-    LOG(mp3filename);
 
     lame_global_flags *gfp = lame_init();    
     lame_set_quality(gfp, 5);
@@ -80,12 +78,14 @@ void audioEncoder::encodeWavToMp3()
     }
     else
     {
-        LOG("audioEncoder : File open error");
+        LOG_DEBUG("audioEncoder Wavefile open error : ", ferror(wavefile));
     }
 
     fclose(wavefile);
     lame_close(gfp);
-    LOG("<--audioEncoder::encodeWavToMp3");
+    str.erase();
+    str = "Encoding Successful : " + mp3filename;
+    LOG(str);
 }
 
 }   // waveEncoder

@@ -34,26 +34,26 @@ OR
 ## Linux
 
 ### One time setting
+
     - Install MP3 encoding library with the command : 
 		sudo apt install libmp3lame-dev
 
     - Install GNU C++ compiler : 
 		sudo apt install g++
 
-
 ### Build
     - Open terminal, clone the repository "waveencoder" and go to the directory "waveencoder"
 
     - Build the souce code with :
-      g++ sources/*.cpp  -I includes -lpthread /usr/lib/x86_64-linux-gnu/libmp3lame.a -o waveencoder -Wall
+      	g++ sources/*.cpp  -I includes -lpthread /usr/lib/x86_64-linux-gnu/libmp3lame.a -o waveencoder -Wall
 
     - Build with macro to enable logs
-      g++ sources/*.cpp  -I includes -lpthread /usr/lib/x86_64-linux-gnu/libmp3lame.a -o waveencoder -D INFO -D DEBUG -D RUNTIME
-
+      	g++ sources/*.cpp  -I includes -lpthread /usr/lib/x86_64-linux-gnu/libmp3lame.a -o waveencoder -D DEBUG 
 
 ## Windows 
 
 ### One time setting
+
     - Install cygwin in windows 
     - Install packages packages > GNU C++ Compiler, Lame library 
 
@@ -61,17 +61,18 @@ OR
     - Open cygwin terminal, clone the repository "waveencoder" and go to directory "waveencoder"
 
     - Build the souce code with
-     *g++ sources/*.cpp  -I includes -lpthread /usr/lib/x86_64-linux-gnu/libmp3lame.a -o waveencoder -Wall -O2*
+     	g++ sources/*.cpp  -I includes -lpthread /usr/lib/x86_64-linux-gnu/libmp3lame.a -o waveencoder -Wall -O2
 
     - Build with macro INFO OR DEBUG to enable logs
-      *g++ sources/*.cpp  -I includes -lpthread /usr/lib/x86_64-linux-gnu/libmp3lame.a -o waveencoder -D INFO -D DEBUG*
-
+      	g++ sources/*.cpp  -I includes -lpthread /usr/lib/x86_64-linux-gnu/libmp3lame.a -o waveencoder -D INFO -D DEBUG
 
 ## WAVE to MP Conversion
 
     - The generated executable accept directory path as argument as below
            ./wavencoder <directory path of wave files> 
 
-	- I have uploaded few wave files under the folder : waveencoder/resources. 
-  - Convert all WAVE files in the directory resources to MP3 files, 
-      ./waveencoder resources
+	- The wave files are stored in the folder : waveencoder/resources. 
+
+    - Run the binary with commandline option
+   	  ./wavencoder resources
+

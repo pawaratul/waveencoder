@@ -6,7 +6,7 @@
 #include<mutex>
 
 #define LOG(msg)  waveencoder::logger::get().log(msg)
-#define LOGI(msg, v)  waveencoder::logger::get().log(msg, v)
+#define LOG_DEBUG(msg, v)  waveencoder::logger::get().log(msg, v)
 
 namespace waveencoder
 {
@@ -24,21 +24,17 @@ public:
   }
 
     void log(std::string str)
-    {
-#if INFO        
+    {        
         mtx.lock();
-        std::cout << "0x" << std::hex << std::this_thread::get_id() << " : " << str << std::endl;
+        std::cout << __TIME__ << " - " << str << std::endl;
         mtx.unlock();
-#endif
     }
 
     void log(std::string str, uint64_t v)
     {
 #if DEBUG        
         mtx.lock();
-        std::cout << __TIME__ << " : " << str << int64_t(v) << std::endl;
-
-        // std::cout << "0x" << std::hex << std::this_thread::get_id() << " : " << str << v << std::endl;
+        std::cout << __TIME__ << " - " << str << v << std::endl;
         mtx.unlock();
 #endif        
     }

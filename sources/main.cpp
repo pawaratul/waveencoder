@@ -8,7 +8,7 @@
 #include "logger.hpp"
 #include "workerthread.hpp"
 
-#if RUNTIME
+#if DEBUG
 class runtimer
 {
     public:
@@ -17,7 +17,7 @@ class runtimer
     ~runtimer()
     {
         std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();
-        LOGI("Total execution time :", std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count());
+        LOG_DEBUG("Total execution time :", std::chrono::duration_cast<std::chrono::seconds>(end-start).count());
     }
 };
 #endif
@@ -33,12 +33,12 @@ int main(int argc, char **argv)
         
     if(argc == 2)
     {
-#if RUNTIME        
+#if DEBUG        
         runtimer t1;
 #endif
-        LOG("Encoding WAV files to MP3 Files");
         std::string dirPath(argv[1]);
         std::string fileName;
+        LOG("Encoding application started");
 #if defined(__linux__) || defined(__CYGWIN__)        
         DIR *dirp = opendir(dirPath.c_str());
 
@@ -62,7 +62,6 @@ int main(int argc, char **argv)
                         {
                             fileName = dirPath + '/' + file->d_name;
                         }
-                        LOG(fileName);
                         std::unique_ptr<waveEncoder::command> command = std::make_unique<waveEncoder::audioCommand>(fileName);
                         threadPool.run(command);
                     }
@@ -70,15 +69,11 @@ int main(int argc, char **argv)
             }
             threadPool.wait();
         }
-        else
-        {
-            LOG("Error : opendir"); 
-        }
 #endif
     }
     else
     {
-        LOG("Error : No input path");
+        LOG("Error : No input argument");
         ret = EXIT_FAILURE;
     }
     LOG("Closing encoding application");
