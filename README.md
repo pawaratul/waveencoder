@@ -25,6 +25,11 @@ Requirements:
 
 # waveencoder
 
+- Clone the repo into your workspace. Do one time setting if required and Follow the Build steps 
+
+OR
+- Download the repo into your workspace. Do one time setting if required and Follow the Build steps
+
 ## Linux
 
 ### One time setting
